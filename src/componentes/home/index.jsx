@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import react,{useEffect, useState } from "react";
 
-function Home(){
-
-const [departamentos, setDepartamentos] = useState(null);
+function Home() {
+  const [departamentos, setDepartamentos] = useState(null);
   const [capitales, setCapitales] = useState(null);
 
-
-useEffect(() => {
+    useEffect(() => {
     const urlDpt =
       "https://gist.githubusercontent.com/diaztibata/fe3d238ee6b59ef71c8001654441a9f6/raw/4974a1b1cab3ac606dd96aa2d34d6e7c8e007daf/departamentosglobal.json";
     const urlCpt =
@@ -25,6 +23,9 @@ useEffect(() => {
 
     fetchJson(urlDpt, setDepartamentos);
     fetchJson(urlCpt, setCapitales);
+
+    console.log(departamentos)
+
   }, []);
 
     return(
@@ -42,19 +43,29 @@ useEffect(() => {
           placeholder="Buscar por nombre..."
         />
       </div>
-
-    <div className="lugar">
-        <p>Nombre <span> numero de votos <span/></span></p>
+      
+      <div className="lugar">
+       {
+        // verficar que capitales y capitales .data existen ates de mapear
+        ! capitales?(
+            <p>Cargando...</p>
+        ) : (
+            capitales.data.cpt.map((item)=>(
+        <p key={item.id}>
+            {item.nm}
+        </p>)
+        ))}
+        <p>Nombre<span> numero de votos</span></p>
         <div>
-            <p>Candidatos: </p>
+            <p>Candidatos:</p>
             <ul>
-                <li>candidato1</li>
-                <li>candidato2</li>
+                <li>candidato 1</li>
+                <li>candidato 2</li>
             </ul>
         </div>
-    </div>
+      </div>
     </>
-    )
+)
 }
 
 export default Home
