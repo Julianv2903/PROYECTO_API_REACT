@@ -1,11 +1,11 @@
 
 
-function Informativa(){
-    return(
-        <>
-        Informativa
-        </>
-    )
+function Informativa() {
+return(
+    <>
+    informativa
+    </>
+)
 }
 
 export default Informativa
